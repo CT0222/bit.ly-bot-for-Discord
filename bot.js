@@ -1,13 +1,15 @@
 const config = require("./config.json");
 const token = config.discordToken;
+const id = config.bitlyID;
+const secret = config.bitlySecret;
 const prefix = config.prefix;
 const color = config.color;
 const name = config.name;
 
 const BitlyAPI = require("node-bitlyapi");
 const Bitly = new BitlyAPI({
-    client_id: "1a71c978abeb4643781c7f167f784f273ba754a8",
-    client_secret: "2480ba4475ff3c1b2dc60f41a97a9fa5a9873dff"
+    client_id: id,
+    client_secret: secret
 });
 
 Bitly.setAccessToken(config.bitlyToken);
@@ -40,7 +42,7 @@ client.on("guildCreate", guild => {
         .setColor(color)
         .setDescription("**" + `${name}` + "** just joined " + guild.name)
         .addField("Display the command list:", "```" + `${prefix}help` + "```")
-        .addField("Shorten a URL:", "```" + `${prefix}short` + " [your URL]" + "```")
+        .addField("Shorten a URL:", "```" + `${prefix}short [your URL]` + "```")
     channel.sendEmbed(embed);
 });
 
